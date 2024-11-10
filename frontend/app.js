@@ -1,4 +1,17 @@
-document.getElementById("fetchQuestionsBtn").addEventListener("click", fetchQuestions);
+// // Automatically transition from #first-page to #app after 3 seconds
+// document.addEventListener("DOMContentLoaded", () => {
+//     setTimeout(() => {
+//         document.getElementById("first-page").classList.add("hidden"); // Hide the first page
+//         document.getElementById("app").classList.remove("hidden"); // Show the app
+//     }, 3000); // 3-second delay
+// });
+
+document.getElementById("fetchQuestionsBtn").addEventListener("click", () => {
+    fetchQuestions();
+    document.getElementById("first-page").classList.add("hidden");
+    document.getElementById("app").classList.add("hidden");
+    document.getElementById("question").classList.remove("hidden"); // Show the question div
+});
 
 async function fetchQuestions() {
     try {

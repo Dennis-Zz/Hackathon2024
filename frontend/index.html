@@ -3,14 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Questions</title>
+    <title>Transition Example</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="app">
+
+<div id="first-page">
+    <img src="./img/logo.png" alt="Logo image" class = "logo" width="290">
+    <h1>Hello World!</h1>
+    <h2>Welcome to <span class="highlight">CodeSprout!</span></h2>
+</div>
+
+<div id="app" class="hidden">
     <h1>Random Questions</h1>
     <button id="fetchQuestionsBtn">Fetch Questions</button>
-    <div id="questionsContainer"></div> <!-- Container for displaying questions kaikai-->
+</div>
+
+<div id="question" class="hidden">
+    <h1>Questions</h1>
+    <div id="questionsContainer"></div> <!-- Container for displaying questions -->
 </div>
 
 <script src="app.js"></script>

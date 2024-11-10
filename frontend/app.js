@@ -1,10 +1,10 @@
-// // Automatically transition from #first-page to #app after 3 seconds
-// document.addEventListener("DOMContentLoaded", () => {
-//     setTimeout(() => {
-//         document.getElementById("first-page").classList.add("hidden"); // Hide the first page
-//         document.getElementById("app").classList.remove("hidden"); // Show the app
-//     }, 3000); // 3-second delay
-// });
+// Automatically transition from #first-page to #app after 3 seconds
+document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
+        document.getElementById("first-page").classList.add("hidden"); // Hide the first page
+        document.getElementById("app").classList.remove("hidden"); // Show the app
+    }, 3000); // 3-second delay
+});
 
 document.getElementById("fetchQuestionsBtn").addEventListener("click", () => {
     fetchQuestions();

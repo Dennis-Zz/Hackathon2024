@@ -1,8 +1,8 @@
 /* style.css */
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+    font-family: fantasy;
+    background-color: #f7edc3;
     color: #333;
     display: flex;
     justify-content: center;
@@ -11,64 +11,56 @@ body {
     margin: 0;
 }
 
-#app {
+#app, #question {
     text-align: center;
     width: 80%;
     max-width: 600px;
 }
 
-#fetchQuestionsBtn {
-    padding: 10px 20px;
-    font-size: 16px;
-    margin: 20px 0;
-    cursor: pointer;
-}
 
-.question {
-    background-color: #ffffff;
-    padding: 15px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.options {
-    list-style-type: none;
-    padding: 0;
-    margin: 10px 0;
-}
-
-.options li {
-    padding: 5px 0;
-}
-
-.explanation {
-    font-size: 0.9em;
-    color: #666;
-}
-
-.chat-box {
-    border-top: 1px solid #ddd;
-    padding-top: 10px;
-    margin-top: 15px;
-}
-
-.chat-messages {
-    max-height: 150px;
-    overflow-y: auto;
+#first-page h1 {
+    font-size: 3em;
+    font-weight: bold;
+    color: #000000;
     margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.44);
+    text-align: center;
+  }
+  
+h2 {
+    font-size: 2.5em;
+    color: #000000;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.44);
+    text-align: center;
+  }
+  
+.highlight {
+    color: #6D870A; /* Green color for "CodeSprout!" */
+    font-style: italic;
+    font-weight: bold;
 }
 
-.chat-input-container {
-    display: flex;
+.container {
+    text-align: center;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+  }
+  
+
+.hidden {
+    display: none;
 }
 
-#chatInput {
-    flex: 1;
-    padding: 5px;
+#end-page {
+    background-color: transparent; 
 }
-
-#sendChatBtn {
-    padding: 5px 10px;
-    cursor: pointer;
-}
+    
+/* .gif-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}     */

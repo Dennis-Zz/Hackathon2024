@@ -22,8 +22,8 @@ public class HackathonApplication {
 	CommandLineRunner runner(QuestionBankService questionBankService) {
 		return args -> {
 			log.info("Application started, adding questions to the question bank.");
-
-			// Define 7 sample questions
+			
+			// 15 questions
 			question question1 = new question(1, "Which of the following lines of code will print \"Hello, World!\" in Python?", 
 			new String[]{"console.log(\"Hello, World!\")", 
 				"echo \"Hello, World!\"", 

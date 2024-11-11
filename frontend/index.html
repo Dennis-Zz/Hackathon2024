@@ -3,15 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Questions</title>
+    <title>Transition Example</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="app">
-    <h1>Random Questions</h1>
-    <button id="fetchQuestionsBtn">Fetch Questions</button>
-    <div id="questionsContainer"></div> <!-- Container for eee displaying questions -->
+
+<div id="first-page" hidden>
+    <div class="image-container">
+        <img src="./img/logo.png" alt="Logo image" class = "logo" width="290">
+    </div>    
+    <h1>Hello World!</h1>
+    <h2>Welcome to <span class="highlight">CodeSprout!</span></h2>
 </div>
+
+<div id="second-page" hidden>
+    <h1>...</h1>
+    <div id="questionsContainer"></div> <!-- Container for displaying questions -->
+</div> 
+
+<div id="end-page">
+    <div class=gif-background">
+        <img src="./img/congrats.gif" alt="Congrats image" class = "congrats" width="300"
+    </div>
+</div>
+
+<div class="end-page gif-background"></div>
+
+
 
 <script src="app.js"></script>
 </body>

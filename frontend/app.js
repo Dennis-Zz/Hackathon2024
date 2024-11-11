@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
         document.getElementById("first-page").classList.add("hidden"); // Hide the first page
         document.getElementById("app").classList.remove("hidden"); // Show the app
-    }, 3000); // 3-second delay
+    }, 1000); // 3-second delay
 });
 
 document.getElementById("fetchQuestionsBtn").addEventListener("click", () => {
@@ -26,48 +26,88 @@ async function fetchQuestions() {
     }
 }
 
+let currentQuestionIndex = 0; // Track the current question index
+
 function displayQuestions(questions) {
     console.log("displayQuestions function started"); // Log to indicate function is running
-    const container = document.getElementById("questionsContainer");
-    container.innerHTML = ""; // Clear previous content
+    // const container = document.getElementById("questionsContainer");
+   //  container.innerHTML = ""; // Clear previous content
 
-    questions.forEach((question, index) => {
-        const questionDiv = document.createElement("div");
-        questionDiv.classList.add("question");
+    // Initial call to display the first question
+    displayQuestion(questions, currentQuestionIndex);
 
-        const questionText = document.createElement("h3");
-        questionText.innerText = `Q${index + 1}: ${question.questionText}`;
-        questionDiv.appendChild(questionText);
+    // Add the "Next Question" button if it doesn't exist already
 
-        if (question.imagePath) {
-            const questionImage = document.createElement("img");
-            questionImage.src = question.imagePath;
-            questionImage.alt = "Question Image";
-            questionImage.classList.add("question-image");
-            questionDiv.appendChild(questionImage);
+}
+
+function displayQuestion(questions, index) {
+    const question = questions[index];
+
+    // Set the question text
+    const questionText = document.getElementById("questionText");
+    questionText.innerText = `Q${index + 1}: ${question.questionText}`;
+
+    // Set the answer options
+    document.getElementById("optionA").innerText = `A. ${question.options[0]}`;
+    document.getElementById("optionB").innerText = `B. ${question.options[1]}`;
+    document.getElementById("optionC").innerText = `C. ${question.options[2]}`;
+    document.getElementById("optionD").innerText = `D. ${question.options[3]}`;
+
+    // Find and reset the submit button to remove previous listeners
+    const submitButton = document.getElementById("submit");
+    const newSubmitButton = submitButton.cloneNode(true); // Clone to remove previous listeners
+    submitButton.parentNode.replaceChild(newSubmitButton, submitButton);
+
+    // Attach the event listener to the new submit button
+    newSubmitButton.addEventListener("click", () => {
+        // Disable the submit button after the first click
+        newSubmitButton.disabled = true;
+
+        // Display explanation if not already present
+        console.log("console.log(question.explain)")
+        console.log(question.explain)
+        if (!document.querySelector(".explanation")) {
+            const explanation = document.createElement("p");
+            explanation.classList.add("explanation");
+            explanation.innerText = `Explanation: ${question.explain}`;
+
+            console.log(explanation)
+            document.getElementById("questionContainer").appendChild(explanation);
         }
 
-        const optionsList = document.createElement("ul");
-        optionsList.classList.add("options");
+        // Add Chat Box if not already present
+        if (!document.querySelector(".chat-box")) {
+            const chatBox = createChatBox();
+            document.getElementById("questionContainer").appendChild(chatBox);
+        }
 
-        question.options.forEach((option, i) => {
-            const optionItem = document.createElement("li");
-            optionItem.innerText = `${String.fromCharCode(65 + i)}. ${option}`;
-            optionsList.appendChild(optionItem);
+        // Add "Next Question" button if it doesn't exist
+        const nextContainer = document.getElementById("next");
+        nextContainer.innerHTML = ""; // Clear any previous "Next Question" button
+        const nextButton = document.createElement("button");
+        nextButton.id = "nextQuestionBtn";
+        nextButton.innerText = "Next Question";
+        nextButton.classList.add("next-button");
+        nextContainer.appendChild(nextButton);
+
+        // Event listener for "Next Question" button
+        nextButton.addEventListener("click", () => {
+            currentQuestionIndex++;
+            newSubmitButton.disabled = false; // Re-enable submit button for the next question
+            const questionsContainer = document.getElementById("questionContainer");
+            questionsContainer.querySelectorAll(".explanation, .chat-box").forEach(element => element.remove());
+
+            nextButton.remove();
+
+
+            if (currentQuestionIndex < questions.length) {
+                displayQuestion(questions, currentQuestionIndex);
+            } else {
+                alert("No more questions available.");
+                currentQuestionIndex = 0; // Reset to first question
+                displayQuestion(questions, currentQuestionIndex);
+            }
         });
-
-        questionDiv.appendChild(optionsList);
-
-        const explanation = document.createElement("p");
-        explanation.classList.add("explanation");
-        explanation.innerText = `Explanation: ${question.explain}`;
-        questionDiv.appendChild(explanation);
-
-        // Chat Box
-        const chatBox = createChatBox();
-        questionDiv.appendChild(chatBox);
-
-        container.appendChild(questionDiv);
     });
 }
 

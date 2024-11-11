@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +19,20 @@
 
 <div id="question" class="hidden">
     <h1>Questions</h1>
-    <div id="questionsContainer"></div> <!-- Container for displaying questions -->
+    <div id="questionContainer">
+        <div id="questionBox">
+            <h1 id="questionText">Question will appear here</h1>
+        </div>
+        <div id="answersContainer">
+            <button class="answer-button" id="optionA">A</button><br>
+            <button class="answer-button" id="optionB">B</button><br>
+            <button class="answer-button" id="optionC">C</button><br>
+            <button class="answer-button" id="optionD">D</button><br>
+        </div>
+    </div>
+
+    <button id="submit">submit</button>
+    <div id="next"> </div>
 </div>
 
 <script src="app.js"></script>

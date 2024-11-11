@@ -1,9 +1,17 @@
-// Automatically transition from #first-page to #app after 3 seconds
+// Automatically transition from #first-page to #second-page after 3 seconds
 document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
         document.getElementById("first-page").classList.add("hidden"); // Hide the first page
+        document.getElementById("second-page").classList.remove("hidden"); // Show the second-page
+    }, 2500); // 3-second delay
+});
+
+//Automatically transition from #second-page to #app after 3 seconds
+document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
+        document.getElementById("second-page").classList.add("hidden"); // Hide the second-page
         document.getElementById("app").classList.remove("hidden"); // Show the app
-    }, 3000); // 3-second delay
+    }, 5000); // 3-second delay after the second page appears
 });
 
 document.getElementById("fetchQuestionsBtn").addEventListener("click", () => {

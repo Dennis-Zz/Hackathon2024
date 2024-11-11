@@ -60,7 +60,7 @@ body {
 }
 
 /* Styling the answer buttons */
-.answer-button, #nextQuestionBtn, #submit{
+.answer-button, #nextQuestionBtn, #submit {
     background-color: #FFE0B2;
     border: none;
     border-radius: 10px;
@@ -73,7 +73,13 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.answer-button:hover, #nextQuestionBtn:hover, #submit:hover{
+/* Add space between submit and next question button */
+#nextQuestionBtn, #submit {
+    margin-bottom: 20px; /* Adjust this value for desired space */
+}
+
+/* Hover effect */
+.answer-button:hover, #nextQuestionBtn:hover, #submit:hover {
     background-color: #FFCC99;
 }
 
@@ -84,3 +90,76 @@ body {
     width: 200px; 
     height: auto; 
 }
+
+.explanation {
+    background-color: white;   /* White background */
+    border: 2px solid black;   /* Black frame */
+    padding: 20px;             /* Space inside the box */
+    border-radius: 10px;       /* Rounded corners (optional) */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    margin: 20px 0;            /* Vertical margin */
+    font-size: 16px;           /* Adjust font size */
+    width: auto;               /* Width adjusts based on content */
+    max-width: 600px;          /* Set a max-width */
+    height: auto;              /* Height adjusts based on content */
+    word-wrap: break-word;  
+}
+
+/* Styling for the entire chat box */
+.chat-box {
+    width: 400px;
+    height: 100px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+}
+.chat-box, #submit {
+    margin-bottom: 20px; 
+}
+
+/* Styling for the chat messages container */
+.chat-messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    padding-right: 10px;
+}
+
+/* Styling for the input container */
+.chat-input-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Styling for the input field */
+.chat-input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+/* Styling for the send button */
+.send-chat-btn {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+/* Change the button color when hovering */
+.send-chat-btn:hover {
+    background-color: #45a049;
+}
+

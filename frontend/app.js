@@ -83,6 +83,7 @@ function displayQuestion(questions, index) {
             return;
         }
 
+
         const codepic = document.getElementById("codepic");
 
         if (codepic && codepic.innerHTML.trim() !== "") {
@@ -127,6 +128,10 @@ function displayQuestion(questions, index) {
         // Event listener for "Next Question" button
         nextButton.addEventListener("click", () => {
             currentQuestionIndex++;
+            if (selectedOption) {
+                selectedOption.classList.remove("selected"); // Optional: remove styling if necessary
+                selectedOption = null;
+            }
             newSubmitButton.disabled = false; // Re-enable submit button for the next question
             const questionsContainer = document.getElementById("questionContainer");
             questionsContainer.querySelectorAll(".explanation, .chat-box").forEach(element => element.remove());
@@ -210,10 +215,10 @@ function createChatBox() {
 }
 
 async function sendMessage(chatInput, chatMessages) {
-    const userMessage = chatInput.value.trim();
+    const userMessage = chatInput.value.trim() + ", please answer in 20 words";
     if (userMessage === "") return;
 
-    addChatMessage("User", userMessage, chatMessages);
+    addChatMessage("User", chatInput.value.trim(), chatMessages);
     chatInput.value = "";
 
     try {

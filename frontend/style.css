@@ -84,9 +84,9 @@ p {
 }
 
 .logo {
-    width: 170px; /* Adjust size based on your logo */
+    width: 140px; /* Adjust size based on your logo */
     margin-bottom: 30px;
-    position: absolute;
+    position: relative;
     top: 0px;
     right: 0px;
 }

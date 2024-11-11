@@ -14,12 +14,37 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 5000); // 3-second delay after the second page appears
 });
 
+// transition from #app to #question after clicking on the start button
 document.getElementById("fetchQuestionsBtn").addEventListener("click", () => {
     fetchQuestions();
-    document.getElementById("first-page").classList.add("hidden");
     document.getElementById("app").classList.add("hidden");
     document.getElementById("question").classList.remove("hidden"); // Show the question div
+    document.addEventListener("click", () => {
+        document.getElementById("question").classList.add("hidden");
+        document.getElementById("last2").classList.remove("hidden"); // Show the question div
+
+        document.addEventListener("click", () => {
+      
+        document.getElementById("last2").classList.add("hidden");
+        document.getElementById('last').classList.remove('hidden');
+
+        document.getElementById("RestartBtn").addEventListener("click", () => {
+            document.getElementById("last").classList.add("hidden");
+            document.getElementById("app").classList.remove("hidden"); // Show the question div
+        });
+        
+      });
+    });
 });
+
+
+
+
+
+
+
+
+
 
 async function fetchQuestions() {
     try {

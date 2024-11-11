@@ -15,7 +15,6 @@ public class HackathonApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HackathonApplication.class, args);
 
-
 	}
 
 	@Bean

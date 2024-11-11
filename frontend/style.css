@@ -46,6 +46,7 @@ h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
   }
 
 
@@ -104,8 +105,8 @@ p {
 .start-button {
     background-color: #6D870A; /* Light green button color */
     color: #ffffff;
-    font-size: 2.3em;
-    padding: 15px 45px;
+    font-size: 2.1em;
+    padding: 15px 30px;
     border: none;
     border-radius: 25px;
     cursor: pointer;
@@ -116,12 +117,46 @@ p {
     display: none;
 }
 
-#fetchQuestionsBtn {
-    padding: 10px 20px;
-    font-size: 16px;
-    margin: 20px 0;
+#last2
+
+.logo {
+    width: 240px; /* Adjust size based on your logo */
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+p {
+    font-size: 2.4em;
+    color: #000000;
+    margin-bottom: 30px;
+  }
+
+#last
+.logo {
+    width: 240px; /* Adjust size based on your logo */
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+p {
+    font-size: 2.4em;
+    color: #000000;
+    margin-bottom: 30px;
+  }
+
+.restart-button {
+    background-color: #6D870A; /* Light green button color */
+    color: #ffffff;
+    font-size: 2.1em;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 25px;
     cursor: pointer;
-}
+  }
+
+
+
+
 
 /* Additional styling for questions, options, explanation, and chat box */
 .question {

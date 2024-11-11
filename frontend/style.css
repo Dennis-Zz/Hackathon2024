@@ -49,6 +49,7 @@ body {
     max-width: 100%; /* Ensures it doesn’t exceed the container width */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border: 3px solid black;
+    font-family: 'Sour Gummy', Arial, sans-serif;
 }
 
 /* Container for the answer buttons */

@@ -2,10 +2,17 @@
 document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
         document.getElementById("first-page").classList.add("hidden"); // Hide the first page
-        document.getElementById("app").classList.remove("hidden"); // Show the app
-    }, 1000); // 3-second delay
+        document.getElementById("second-page").classList.remove("hidden"); // Show the second-page
+    }, 2500); // 3-second delay
 });
 
+//Automatically transition from #second-page to #app after 3 seconds
+document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
+        document.getElementById("second-page").classList.add("hidden"); // Hide the second-page
+        document.getElementById("app").classList.remove("hidden"); // Show the app
+    }, 5000); // 3-second delay after the second page appears
+});
 document.getElementById("fetchQuestionsBtn").addEventListener("click", () => {
     fetchQuestions();
     document.getElementById("first-page").classList.add("hidden");
@@ -40,12 +47,23 @@ function displayQuestions(questions) {
 
 }
 
+
+let selectedOption = null; // Track the selected answer button
 function displayQuestion(questions, index) {
     const question = questions[index];
 
     // Set the question text
     const questionText = document.getElementById("questionText");
     questionText.innerText = `Q${index + 1}: ${question.questionText}`;
+
+    if (question.imagePath) {
+        const questionImage = document.createElement("img");
+        questionImage.src = question.imagePath;
+        questionImage.alt = "Question Image";
+        questionImage.classList.add("question-image");
+        const codepic = document.getElementById("codepic");
+        codepic.appendChild(questionImage);
+    }
 
     // Set the answer options
     document.getElementById("optionA").innerText = `A. ${question.options[0]}`;
@@ -60,12 +78,28 @@ function displayQuestion(questions, index) {
 
     // Attach the event listener to the new submit button
     newSubmitButton.addEventListener("click", () => {
+        if (!selectedOption) {
+            alert("Please select an answer before submitting!");
+            return;
+        }
+
+        const codepic = document.getElementById("codepic");
+
+        if (codepic && codepic.innerHTML.trim() !== "") {
+            codepic.innerHTML = ""; // Clear the content if not empty
+        }
+
         // Disable the submit button after the first click
         newSubmitButton.disabled = true;
 
-        // Display explanation if not already present
-        console.log("console.log(question.explain)")
-        console.log(question.explain)
+        // Check if the selected answer is correct
+        const correctAnswer = question.options[question.correctOptionIndex];
+        if (selectedOption.innerText.includes(correctAnswer)) {
+            selectedOption.classList.add("correct"); // Green for correct
+        } else {
+            selectedOption.classList.add("incorrect"); // Red for incorrect
+        }
+
         if (!document.querySelector(".explanation")) {
             const explanation = document.createElement("p");
             explanation.classList.add("explanation");
@@ -97,15 +131,50 @@ function displayQuestion(questions, index) {
             const questionsContainer = document.getElementById("questionContainer");
             questionsContainer.querySelectorAll(".explanation, .chat-box").forEach(element => element.remove());
 
+            document.querySelectorAll('.answer-button').forEach(button => {
+                button.classList.remove("correct", "incorrect", "selected"); // Remove all styles
+            });
             nextButton.remove();
 
 
             if (currentQuestionIndex < questions.length) {
                 displayQuestion(questions, currentQuestionIndex);
             } else {
-                alert("No more questions available.");
-                currentQuestionIndex = 0; // Reset to first question
-                displayQuestion(questions, currentQuestionIndex);
+                document.getElementById("app").classList.add("hidden");
+                document.getElementById("question").classList.remove("hidden"); // Show the question div
+
+                // Add a one-time event listener for the first transition
+                document.getElementById("question").addEventListener("click", () => {
+                    console.log("Transitioning from question to last2");
+                    document.getElementById("question").classList.add("hidden");
+                    document.getElementById("last2").classList.remove("hidden"); // Show the last2 div
+                }, { once: true }); // This ensures the event listener is only called once
+
+                // Add a one-time event listener for the second transition
+                document.getElementById("last2").addEventListener("click", () => {
+                    console.log("Transitioning from last2 to last");
+                    document.getElementById("last2").classList.add("hidden");
+                    document.getElementById("last").classList.remove("hidden"); // Show the last div
+                }, { once: true }); // This ensures the event listener is only called once
+
+                // Restart button to reset the view back to the start
+                document.getElementById("RestartBtn").addEventListener("click", () => {
+                    // Reset views
+                    document.getElementById("last").classList.add("hidden");
+                    document.getElementById("app").classList.remove("hidden"); // Show the initial app div
+                    currentQuestionIndex = 0;
+                    selectedOption = null;
+
+                    // Reset any selected answer button styles
+                    document.querySelectorAll('.answer-button').forEach(button => {
+                        button.classList.remove("correct", "incorrect", "selected");
+                    });
+                });
+
+                document.getElementById('QuitBtn').addEventListener('click', () => {
+                    window.close();
+                });
+
             }
         });
     });
@@ -171,3 +240,17 @@ function addChatMessage(sender, message, chatMessages) {
     chatMessages.appendChild(messageDiv);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
+
+document.querySelectorAll('.answer-button').forEach(button => {
+    button.classList.remove("selected"); // Clear previous selection
+
+    button.addEventListener('click', () => {
+        // Deselect any previously selected button
+        if (selectedOption) {
+            selectedOption.classList.remove("selected");
+        }
+        // Mark the clicked button as selected
+        button.classList.add("selected");
+        selectedOption = button;
+    });
+});

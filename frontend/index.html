@@ -3,17 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Questions</title>
+    <title>Transition Example</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="app">
+
+<div id="first-page">
+    <h1>First Page</h1>
+</div>
+
+<div id="app" class="hidden">
     <h1>Random Questions</h1>
     <button id="fetchQuestionsBtn">Fetch Questions</button>
-    <div id="questionsContainer"></div> <!-- Container for displaying questions haha-->
+</div>
+
+<div id="question" class="hidden">
+    <div id="questionsContainer">
+        <div id="questionText">Question will appear here </div>
+        <button class="answer-button" id="optionA">A</button><br>
+        <button class="answer-button" id="optionB">B</button><br>
+        <button class="answer-button" id="optionC">C</button><br>
+        <button class="answer-button" id="optionD">D</button><br>
+    </div>
 </div>
 
 <script src="app.js"></script>
 </body>
 </html>
-

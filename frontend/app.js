@@ -1,4 +1,17 @@
-document.getElementById("fetchQuestionsBtn").addEventListener("click", fetchQuestions);
+// Automatically transition from #first-page to #app after 3 seconds
+document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
+        document.getElementById("first-page").classList.add("hidden"); // Hide the first page
+        document.getElementById("app").classList.remove("hidden"); // Show the app
+    }, 3000); // 3-second delay
+});
+
+document.getElementById("fetchQuestionsBtn").addEventListener("click", () => {
+    fetchQuestions();
+    document.getElementById("first-page").classList.add("hidden");
+    document.getElementById("app").classList.add("hidden");
+    document.getElementById("question").classList.remove("hidden"); // Show the question div
+});
 
 async function fetchQuestions() {
     try {
@@ -18,44 +31,53 @@ function displayQuestions(questions) {
     const container = document.getElementById("questionsContainer");
     container.innerHTML = ""; // Clear previous content
 
-    questions.forEach((question, index) => {
-        const questionDiv = document.createElement("div");
-        questionDiv.classList.add("question");
+    // Get the first question from the array
+    const question = questions[0];
 
-        const questionText = document.createElement("h3");
-        questionText.innerText = `Q${index + 1}: ${question.questionText}`;
-        questionDiv.appendChild(questionText);
+    // todo
 
-        if (question.imagePath) {
-            const questionImage = document.createElement("img");
-            questionImage.src = question.imagePath;
-            questionImage.alt = "Question Image";
-            questionImage.classList.add("question-image");
-            questionDiv.appendChild(questionImage);
-        }
+    const questiontext = document.getElementById("questionText");
 
-        const optionsList = document.createElement("ul");
-        optionsList.classList.add("options");
+    question.innerText = `Q1: ${question.questionText}`;
 
-        question.options.forEach((option, i) => {
-            const optionItem = document.createElement("li");
-            optionItem.innerText = `${String.fromCharCode(65 + i)}. ${option}`;
-            optionsList.appendChild(optionItem);
-        });
 
-        questionDiv.appendChild(optionsList);
 
-        const explanation = document.createElement("p");
-        explanation.classList.add("explanation");
-        explanation.innerText = `Explanation: ${question.explain}`;
-        questionDiv.appendChild(explanation);
+    // const questionDiv = document.createElement("div");
+    // questionDiv.classList.add("question");
 
-        // Chat Box
-        const chatBox = createChatBox();
-        questionDiv.appendChild(chatBox);
+    // const questionText = document.createElement("h3");
+    // questionText.innerText = `Q1: ${question.questionText}`;
+    // questionDiv.appendChild(questionText);
 
-        container.appendChild(questionDiv);
-    });
+    // if (question.imagePath) {
+    //     const questionImage = document.createElement("img");
+    //     questionImage.src = question.imagePath;
+    //     questionImage.alt = "Question Image";
+    //     questionImage.classList.add("question-image");
+    //     questionDiv.appendChild(questionImage);
+    // }
+
+    // const optionsList = document.createElement("ul");
+    // optionsList.classList.add("options");
+
+    // question.options.forEach((option, i) => {
+    //     const optionItem = document.createElement("li");
+    //     optionItem.innerText = `${String.fromCharCode(65 + i)}. ${option}`;
+    //     optionsList.appendChild(optionItem);
+    // });
+
+    // questionDiv.appendChild(optionsList);
+
+    // const explanation = document.createElement("p");
+    // explanation.classList.add("explanation");
+    // explanation.innerText = `Explanation: ${question.explain}`;
+    // questionDiv.appendChild(explanation);
+
+    // // Chat Box
+    // const chatBox = createChatBox();
+    // questionDiv.appendChild(chatBox);
+
+    // container.appendChild(questionDiv);
 }
 
 function createChatBox() {

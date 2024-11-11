@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
         document.getElementById("first-page").classList.add("hidden"); // Hide the first page
         document.getElementById("app").classList.remove("hidden"); // Show the app
-    }, 3000); // 3-second delay
+    }, 1000); // 3-second delay
 });
 
 document.getElementById("fetchQuestionsBtn").addEventListener("click", () => {
@@ -29,7 +29,7 @@ async function fetchQuestions() {
 function displayQuestions(questions) {
     console.log("displayQuestions function started"); // Log to indicate function is running
     const container = document.getElementById("questionsContainer");
-    container.innerHTML = ""; // Clear previous content
+    //container.innerHTML = ""; // Clear previous content
 
     // Get the first question from the array
     const question = questions[0];
@@ -38,7 +38,17 @@ function displayQuestions(questions) {
 
     const questiontext = document.getElementById("questionText");
 
-    question.innerText = `Q1: ${question.questionText}`;
+    questiontext.innerText = `Q1: ${question.questionText}`;
+
+    const buttonA = document.getElementById("optionA");
+    const buttonB = document.getElementById("optionB");
+    const buttonC = document.getElementById("optionC");
+    const buttonD = document.getElementById("optionD");
+
+    buttonA.innerText = `A. ${question.options[0]}`;
+    buttonB.innerText = `B. ${question.options[1]}`;
+    buttonC.innerText = `C. ${question.options[2]}`;
+    buttonD.innerText = `D. ${question.options[3]}`;
 
 
 
@@ -80,63 +90,63 @@ function displayQuestions(questions) {
     // container.appendChild(questionDiv);
 }
 
-function createChatBox() {
-    const chatBox = document.createElement("div");
-    chatBox.classList.add("chat-box");
+// function createChatBox() {
+//     const chatBox = document.createElement("div");
+//     chatBox.classList.add("chat-box");
 
-    const chatMessages = document.createElement("div");
-    chatMessages.classList.add("chat-messages");
-    chatBox.appendChild(chatMessages);
+//     const chatMessages = document.createElement("div");
+//     chatMessages.classList.add("chat-messages");
+//     chatBox.appendChild(chatMessages);
 
-    const chatInputContainer = document.createElement("div");
-    chatInputContainer.classList.add("chat-input-container");
+//     const chatInputContainer = document.createElement("div");
+//     chatInputContainer.classList.add("chat-input-container");
 
-    const chatInput = document.createElement("input");
-    chatInput.type = "text";
-    chatInput.placeholder = "Ask ChatGPT...";
-    chatInput.classList.add("chat-input");
+//     const chatInput = document.createElement("input");
+//     chatInput.type = "text";
+//     chatInput.placeholder = "Ask ChatGPT...";
+//     chatInput.classList.add("chat-input");
 
-    const sendChatBtn = document.createElement("button");
-    sendChatBtn.innerText = "Send";
-    sendChatBtn.classList.add("send-chat-btn");
+//     const sendChatBtn = document.createElement("button");
+//     sendChatBtn.innerText = "Send";
+//     sendChatBtn.classList.add("send-chat-btn");
 
-    sendChatBtn.addEventListener("click", () => sendMessage(chatInput, chatMessages));
+//     sendChatBtn.addEventListener("click", () => sendMessage(chatInput, chatMessages));
 
-    chatInputContainer.appendChild(chatInput);
-    chatInputContainer.appendChild(sendChatBtn);
+//     chatInputContainer.appendChild(chatInput);
+//     chatInputContainer.appendChild(sendChatBtn);
 
-    chatBox.appendChild(chatInputContainer);
-    return chatBox;
-}
+//     chatBox.appendChild(chatInputContainer);
+//     return chatBox;
+// }
 
-async function sendMessage(chatInput, chatMessages) {
-    const userMessage = chatInput.value.trim();
-    if (userMessage === "") return;
+// async function sendMessage(chatInput, chatMessages) {
+//     const userMessage = chatInput.value.trim();
+//     if (userMessage === "") return;
 
-    addChatMessage("User", userMessage, chatMessages);
-    chatInput.value = "";
+//     addChatMessage("User", userMessage, chatMessages);
+//     chatInput.value = "";
 
-    try {
-        const response = await fetch("http://localhost:8080/api/chat", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ message: userMessage })
-        });
+//     try {
+//         const response = await fetch("http://localhost:8080/api/chat", {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json"
+//             },
+//             body: JSON.stringify({ message: userMessage })
+//         });
 
-        const data = await response.json();
-        addChatMessage("ChatGPT", data.message, chatMessages);
-    } catch (error) {
-        console.error("Error communicating with ChatGPT:", error);
-        addChatMessage("Error", "Failed to fetch a response from ChatGPT.", chatMessages);
-    }
-}
+//         const data = await response.json();
+//         addChatMessage("ChatGPT", data.message, chatMessages);
+//     } catch (error) {
+//         console.error("Error communicating with ChatGPT:", error);
+//         addChatMessage("Error", "Failed to fetch a response from ChatGPT.", chatMessages);
+//     }
+// }
 
-function addChatMessage(sender, message, chatMessages) {
-    const messageDiv = document.createElement("div");
-    messageDiv.classList.add("chat-message");
-    messageDiv.innerHTML = `<strong>${sender}:</strong> ${message}`;
-    chatMessages.appendChild(messageDiv);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-}
+// function addChatMessage(sender, message, chatMessages) {
+//     const messageDiv = document.createElement("div");
+//     messageDiv.classList.add("chat-message");
+//     messageDiv.innerHTML = `<strong>${sender}:</strong> ${message}`;
+//     chatMessages.appendChild(messageDiv);
+//     chatMessages.scrollTop = chatMessages.scrollHeight;
+// }

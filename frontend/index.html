@@ -1,16 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Questions</title>
+    <title>Transition Example</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="app">
-    <h1>Random Questions</h1>
-    <button id="fetchQuestionsBtn">Fetch Questions</button>
-    <div id="questionsContainer"></div> <!-- Container for displaying questions -->
+
+<div id="first-page">
+    <div class="container">
+        <img src="./img/logo.png" alt="Logo image" class = "logo">
+        <h1>Hello World!</h1>
+        <h2>Welcome to <span class="highlight">CodeSprout!</span></h2>
+    </div>
+</div>
+
+<div id="second-page" class="hidden">
+    <div class="container">
+        <div class="text-section">
+            <h1>Hello World!</h1>
+            <h2>Welcome to <span class="highlight">CodeSprout!</span></h2>
+            <p>Ready to Start<br>your Beginner's Programming Journey?</p>
+        </div>
+        <img src="./img/logo.png" alt="CodeSprout Logo" class="logo">
+    </div>
+</div>
+
+<div id="last2" class="hidden">
+    <div class="container">
+        <img src="./img/logo.png" alt="CodeSprout Logo" class="logo">
+        <div class="text-section">
+            <p>Congratulations!<br>You've made the journey.</p>
+        </div>
+        <div class=gif-background">
+            <img src="./img/congrats.gif" alt="Congrats image" class = "congrats" width="300">
+        </div>
+    </div>
+
+</div>
+
+<div id="last" class="hidden">
+    <div class="container">
+        <img src="./img/logo.png" alt="CodeSprout Logo" class="logo">
+        <div class="text-section">
+            <p>Congratulations!<br>You've made the journey.</p>
+        </div>
+        <button id = "RestartBtn" class="restart-button">Restart</button>
+        <button id = "QuitBtn" class="quit-button">Quit</button>
+    </div>
+
+</div>
+
+<div id="app" class="hidden">
+    <div class="container">
+        <div class="text-section">
+            <h1>Hello World!</h1>
+            <h2>Welcome to <span class="highlight">CodeSprout!</span></h2>
+            <p>Ready to Start<br>your Beginner's Programming Journey?</p>
+        </div>
+        <img src="./img/logo.png" alt="CodeSprout Logo" class="logo">
+    </div>
+    <button id = "fetchQuestionsBtn" class="start-button">Start!</button>
+</div>
+
+<div id="question" class="hidden">
+    <h1>Questions</h1>
+    <div id="questionContainer">
+        <div id="questionBox">
+            <h3 id="questionText">Question will appear here</h3>
+
+        </div>
+        <div id= "codepic">
+
+        </div>
+
+        <div id="answersContainer">
+            <button class="answer-button" id="optionA">A</button><br>
+            <button class="answer-button" id="optionB">B</button><br>
+            <button class="answer-button" id="optionC">C</button><br>
+            <button class="answer-button" id="optionD">D</button><br>
+        </div>
+    </div>
+
+    <button id="submit">submit</button>
+    <div id="next"> </div>
 </div>
 
 <script src="app.js"></script>

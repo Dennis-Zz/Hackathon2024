@@ -38,6 +38,11 @@ document.getElementById("fetchQuestionsBtn").addEventListener("click", () => {
 });
 
 
+document.getElementById('QuitBtn').addEventListener('click', () => {
+    window.close();
+});
+
+
 
 
 
